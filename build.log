@@ -1,0 +1,509 @@
+Building Intel Extension for PyTorch. Version: 2.0.100+git25b7212
+running bdist_wheel
+running build
+running build_py
+running build_ext
+running build_clib
+CMake Warning at /home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages/torch/share/cmake/Torch/TorchConfig.cmake:22 (message):
+  static library kineto_LIBRARY-NOTFOUND not found.
+Call Stack (most recent call first):
+  /home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages/torch/share/cmake/Torch/TorchConfig.cmake:127 (append_torchlib_if_found)
+  CMakeLists.txt:20 (find_package)
+
+
+-- Found Torch: /home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages/torch/lib/libtorch.so (Required is at least version "2.0") 
+Release build.
+-- cmake version: 3.20.2
+CMake Deprecation Warning at third_party/ideep/mkl-dnn/CMakeLists.txt:36 (cmake_policy):
+  The OLD behavior for policy CMP0025 will be removed from a future version
+  of CMake.
+
+  The cmake-policies(7) manual explains that the OLD behaviors of all
+  policies are deprecated and that a policy should be set to OLD only under
+  specific short-term circumstances.  Projects should be ported to the NEW
+  behavior and not rely on setting a policy to OLD.
+
+
+-- DNNL_TARGET_ARCH: X64
+-- DNNL_LIBRARY_NAME: dnnl
+-- Found OpenMP_C: -fopenmp (found version "4.5") 
+-- Found OpenMP_CXX: -fopenmp (found version "4.5") 
+-- Could NOT find Doxyrest (missing: DOXYREST_EXECUTABLE) 
+-- Could NOT find Sphinx (missing: SPHINX_EXECUTABLE) 
+-- Enabled workload: TRAINING
+-- Enabled primitives: ALL
+-- Enabled primitive CPU ISA: ALL
+-- Enabled primitive GPU ISA: ALL
+-- Primitive cache is enabled
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Cannot find Doxygen package
+-- DNNL_GRAPH_BUILD_FOR_CI is set to be OFF
+-- Compiling oneDNN Graph with CPU runtime OMP support
+-- Compiling oneDNN Graph with GPU runtime NONE support
+-- Finding LLVM using llvm-config-13
+-- Decided to link LLVM with --link-static
+-- Found LLVM_VERSION=13
+-- Graph compiler backend is enabled.
+CMake Deprecation Warning at third_party/ideep/mkl-dnn/src/backend/graph_compiler/core/CMakeLists.txt:19 (cmake_minimum_required):
+  Compatibility with CMake < 2.8.12 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+-- Found OpenMP_C: -fopenmp (found version "4.5") 
+-- Found OpenMP_CXX: -fopenmp (found version "4.5") 
+-- LLVM backend is ON. version 13
+-- C++ standard is 14
+-- Set version definitions to /home/wangzhe/zhe/intel-extension-for-pytorch/third_party/ideep/mkl-dnn/src/utils/verbose.cpp
+-- Compiled partition cache is enabled
+-- IPEX_CPU_CPP_TPP_SRCS: /home/wangzhe/zhe/intel-extension-for-pytorch/csrc/cpu/tpp/bert/fused_bert.cpp;/home/wangzhe/zhe/intel-extension-for-pytorch/csrc/cpu/tpp/common_loops.cpp;/home/wangzhe/zhe/intel-extension-for-pytorch/csrc/cpu/tpp/init.cpp;/home/wangzhe/zhe/intel-extension-for-pytorch/csrc/cpu/tpp/jit_compile.cpp;/home/wangzhe/zhe/intel-extension-for-pytorch/csrc/cpu/tpp/optim.cpp;/home/wangzhe/zhe/intel-extension-for-pytorch/csrc/cpu/tpp/par_loop_generator.cpp
+CMake Warning at cmake/ClangFormat.cmake:19 (message):
+  Please install clang-format-12 before contributing to IPEX!
+Call Stack (most recent call first):
+  csrc/cpu/CMakeLists.txt:103 (include)
+
+
+Requirement already satisfied: mkl-include>=2021.0.0 in /home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages (2023.2.0)
+Requirement already satisfied: mkl-static>=2021.0.0 in /home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages (2023.2.0)
+Intel oneMKL found.
+-- Using ATen parallel backend: OMP
+-- 
+-- ******** General Summary ********
+-- General:
+--   CMake version         : 3.20.2
+--   CMake command         : /usr/bin/cmake
+--   System                : Linux
+--   Platform              : Linux-5.16.0-rc1-intel-next-00543-g5867b0a2a125-x86_64-with-glibc2.28
+--   Target name           : intel_extension_for_pytorch
+--   Target version        : 2.0.100
+--   Install path          : /home/wangzhe/zhe/intel-extension-for-pytorch/build/Release/packages/intel_extension_for_pytorch
+--   Build type            : Release
+-- Options:
+--   BUILD_WITH_CPU        : ON
+--   BUILD_WITH_XPU        : OFF
+--   BUILD_NO_CLANGFORMAT  : OFF
+--   BUILD_STATS           : OFF
+--   BUILD_STRIPPED_BIN    : OFF
+-- 
+-- ******** Summary on CPU ********
+-- General:
+--   C compiler            : /home/wangzhe/.local/envs/zhe_ipex/bin/gcc
+--   C++ compiler          : /home/wangzhe/.local/envs/zhe_ipex/bin/g++
+--   C++ compiler ID       : GNU
+--   C++ compiler version  : 12.3.0
+--   CXX flags             :  -fPIC -Wno-narrowing -Wall -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-ignored-qualifiers -Wno-stringop-overflow -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fopenmp -faligned-new -Wno-unused-but-set-variable -Wno-uninitialized -fno-math-errno -fno-trapping-math -DNDEBUG -D_GLIBCXX_USE_CXX11_ABI=0
+--   Compile definitions   : AT_PARALLEL_OPENMP=1
+--   CXX Linker options    :  -Wl,-Bsymbolic-functions -Wl,--disable-new-dtags
+--   Link libraries        : /home/wangzhe/zhe/intel-extension-for-pytorch/third_party/libxsmm/lib/libxsmm.a;dnnl_graph;graphcompiler;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMWindowsManifest.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMXRay.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMLibDriver.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMDlltoolDriver.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMCoverage.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMLineEditor.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMX86Disassembler.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMX86AsmParser.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMX86CodeGen.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMX86Desc.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMX86Info.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMOrcJIT.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMMCJIT.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMJITLink.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMInterpreter.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMExecutionEngine.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMRuntimeDyld.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMOrcTargetProcess.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMOrcShared.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMDWP.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMSymbolize.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMDebugInfoPDB.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMDebugInfoGSYM.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMOption.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMObjectYAML.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMMCA.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMMCDisassembler.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMLTO.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMPasses.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMCFGuard.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMCoroutines.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMObjCARCOpts.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMipo.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMVectorize.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMLinker.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMInstrumentation.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMFrontendOpenMP.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMFrontendOpenACC.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMExtensions.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMDWARFLinker.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMGlobalISel.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMMIRParser.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMAsmPrinter.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMDebugInfoMSF.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMDebugInfoDWARF.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMSelectionDAG.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMCodeGen.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMIRReader.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMAsmParser.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMInterfaceStub.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMFileCheck.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMFuzzMutate.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMTarget.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMScalarOpts.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMInstCombine.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMAggressiveInstCombine.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMTransformUtils.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMBitWriter.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMAnalysis.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMProfileData.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMObject.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMTextAPI.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMMCParser.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMMC.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMDebugInfoCodeView.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMBitReader.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMCore.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMRemarks.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMBitstreamReader.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMBinaryFormat.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMTableGen.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMSupport.a;/home/wangzhe/zhe/llvm-project/release/lib/libLLVMDemangle.a;-lrt;-ldl;-lpthread;-lm;-Wl,--start-group;/home/wangzhe/.local/envs/zhe_ipex/lib/libmkl_intel_lp64.a;/home/wangzhe/.local/envs/zhe_ipex/lib/libmkl_core.a;/home/wangzhe/.local/envs/zhe_ipex/lib/libmkl_gnu_thread.a;-Wl,--end-group;/home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages/torch/lib/libtorch_cpu.so;/home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages/torch/lib/libc10.so
+--   Torch version         : 2.0.1
+--   Torch include         : /home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages/torch/include;/home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages/torch/include/torch/csrc/api/include
+--   oneDNN include        : /home/wangzhe/zhe/intel-extension-for-pytorch/third_party/ideep/mkl-dnn/include
+--   oneMKL include        : /home/wangzhe/.local/envs/zhe_ipex/include
+-- Options:
+--   BUILD_STATIC_ONEMKL   : ON
+--   IPEX_DISP_OP          : OFF
+-- 
+-- ********************************
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/wangzhe/zhe/intel-extension-for-pytorch/build/Release/csrc/cpu
+CMake Warning at /home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages/torch/share/cmake/Torch/TorchConfig.cmake:22 (message):
+  static library kineto_LIBRARY-NOTFOUND not found.
+Call Stack (most recent call first):
+  /home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages/torch/share/cmake/Torch/TorchConfig.cmake:127 (append_torchlib_if_found)
+  CMakeLists.txt:25 (find_package)
+
+
+Requirement already satisfied: mkl-include>=2021.0.0 in /home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages (2023.2.0)
+Requirement already satisfied: mkl-static>=2021.0.0 in /home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages (2023.2.0)
+Intel oneMKL found.
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/wangzhe/zhe/intel-extension-for-pytorch/build/Release/tests/cpu/cpp
+CMake Warning at /home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages/torch/share/cmake/Torch/TorchConfig.cmake:22 (message):
+  static library kineto_LIBRARY-NOTFOUND not found.
+Call Stack (most recent call first):
+  /home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages/torch/share/cmake/Torch/TorchConfig.cmake:127 (append_torchlib_if_found)
+  CMakeLists.txt:20 (find_package)
+
+
+-- Found Torch: /home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages/torch/lib/libtorch.so (Required is at least version "2.0") 
+-- pybind11 found
+Release build.
+CMake Warning at cmake/ClangFormat.cmake:19 (message):
+  Please install clang-format-12 before contributing to IPEX!
+Call Stack (most recent call first):
+  intel_extension_for_pytorch/csrc/CMakeLists.txt:33 (include)
+
+
+-- 
+-- ******** General Summary ********
+-- General:
+--   CMake version         : 3.20.2
+--   CMake command         : /usr/bin/cmake
+--   System                : Linux
+--   Platform              : Linux-5.16.0-rc1-intel-next-00543-g5867b0a2a125-x86_64-with-glibc2.28
+--   Target name           : intel_extension_for_pytorch
+--   Target version        : 2.0.100
+--   Install path          : /home/wangzhe/zhe/intel-extension-for-pytorch/build/Release/packages/intel_extension_for_pytorch
+--   Build type            : Release
+-- Options:
+--   BUILD_WITH_CPU        : ON
+--   BUILD_WITH_XPU        : OFF
+--   BUILD_NO_CLANGFORMAT  : OFF
+--   BUILD_STATS           : OFF
+--   BUILD_STRIPPED_BIN    : OFF
+-- 
+-- ******** Summary on Python ********
+-- General:
+--   C compiler            : /home/wangzhe/.local/envs/zhe_ipex/bin/gcc
+--   C++ compiler          : /home/wangzhe/.local/envs/zhe_ipex/bin/g++
+--   C++ compiler ID       : GNU
+--   C++ compiler version  : 12.3.0
+--   CXX flags             :  -D_GLIBCXX_USE_CXX11_ABI=0 -DPYBIND11_COMPILER_TYPE=\"_gcc\" -DPYBIND11_STDLIB=\"_libstdcpp\" -DPYBIND11_BUILD_ABI=\"_cxxabi1011\"
+--   CXX Linker options    :  -Wl,--disable-new-dtags
+--   Link libraries        : intel-ext-pt-cpu
+--   Torch version         : 2.0.1
+--   Torch include         : /home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages/torch/include;/home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages/torch/include/torch/csrc/api/include
+--   Python include        : /home/wangzhe/.local/envs/zhe_ipex/include/python3.9
+--   pybind11 include      : /home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages/torch/include
+-- 
+-- ***********************************
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/wangzhe/zhe/intel-extension-for-pytorch/build/Release/intel_extension_for_pytorch/csrc
+Consolidate compiler generated dependencies of target dnnl_graph_backend_fake
+[  1%] Built target libxsmm
+Consolidate compiler generated dependencies of target dnnl_graph_backend_compiler
+Consolidate compiler generated dependencies of target dnnl_graph_utils
+[  1%] Built target dnnl_graph_backend_fake
+Consolidate compiler generated dependencies of target dnnl_graph_common
+[  2%] Built target dnnl_graph_backend_compiler
+[  3%] Built target dnnl_graph_utils
+[  4%] Built target dnnl_graph_common
+Consolidate compiler generated dependencies of target dnnl_graph_backend_dnnl
+Scanning dependencies of target dnnl_common
+Consolidate compiler generated dependencies of target dnnl_common
+[  7%] Built target dnnl_graph_backend_dnnl
+[ 12%] Built target dnnl_common
+Consolidate compiler generated dependencies of target dnnl_cpu
+[ 21%] Built target dnnl_cpu
+Consolidate compiler generated dependencies of target objlib
+Consolidate compiler generated dependencies of target dnnl_cpu_x64
+[ 43%] Built target objlib
+[ 43%] Built target graphcompiler
+[ 66%] Built target dnnl_cpu_x64
+[ 66%] Built target dnnl
+[ 66%] Built target dnnl_graph
+Consolidate compiler generated dependencies of target intel-ext-pt-cpu
+[ 66%] Building CXX object csrc/cpu/CMakeFiles/intel-ext-pt-cpu.dir/tpp/bert/fused_bert.cpp.o
+[ 66%] Building CXX object csrc/cpu/CMakeFiles/intel-ext-pt-cpu.dir/tpp/init.cpp.o
+[ 66%] Building CXX object csrc/cpu/CMakeFiles/intel-ext-pt-cpu.dir/tpp/optim.cpp.o
+/home/wangzhe/zhe/intel-extension-for-pytorch/csrc/cpu/tpp/init.cpp:15:17: note: '#pragma message: Using OpenMP'
+   15 | #pragma message "Using OpenMP"
+      |                 ^~~~~~~~~~~~~~
+[ 66%] Linking CXX shared library libintel-ext-pt-cpu.so
+[100%] Built target intel-ext-pt-cpu
+Install the project...
+-- Install configuration: "Release"
+-- Set runtime path of "/home/wangzhe/zhe/intel-extension-for-pytorch/build/Release/packages/intel_extension_for_pytorch/lib/libintel-ext-pt-cpu.so" to "$ORIGIN"
+Consolidate compiler generated dependencies of target gtest
+[ 28%] Built target gtest
+Consolidate compiler generated dependencies of target gtest_main
+[ 57%] Built target gtest_main
+Consolidate compiler generated dependencies of target ipex_cpp_test
+[ 71%] Linking CXX executable ipex_cpp_test
+/home/wangzhe/.local/envs/zhe_ipex/bin/../lib/gcc/x86_64-conda-linux-gnu/12.3.0/../../../../x86_64-conda-linux-gnu/bin/ld: warning: libgomp.so.1, needed by /home/wangzhe/zhe/intel-extension-for-pytorch/build/Release/packages/intel_extension_for_pytorch/lib/libintel-ext-pt-cpu.so, not found (try using -rpath or -rpath-link)
+[100%] Built target ipex_cpp_test
+Install the project...
+-- Install configuration: "Release"
+-- Set runtime path of "/home/wangzhe/zhe/intel-extension-for-pytorch/build/Release/packages/intel_extension_for_pytorch/bin/ipex_cpp_test" to "$ORIGIN"
+Consolidate compiler generated dependencies of target PY_CPU_OBJ
+[ 50%] Built target PY_CPU_OBJ
+Consolidate compiler generated dependencies of target intel-ext-pt-python
+[100%] Built target intel-ext-pt-python
+Install the project...
+-- Install configuration: "Release"
+building 'intel_extension_for_pytorch._C' extension
+Emitting ninja build file /home/wangzhe/zhe/intel-extension-for-pytorch/build/Release/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+g++ -pthread -B /home/wangzhe/.local/envs/zhe_ipex/compiler_compat -shared -Wl,-rpath,/home/wangzhe/.local/envs/zhe_ipex/lib -Wl,-rpath-link,/home/wangzhe/.local/envs/zhe_ipex/lib -L/home/wangzhe/.local/envs/zhe_ipex/lib -L/home/wangzhe/.local/envs/zhe_ipex/lib -Wl,-rpath,/home/wangzhe/.local/envs/zhe_ipex/lib -Wl,-rpath-link,/home/wangzhe/.local/envs/zhe_ipex/lib -L/home/wangzhe/.local/envs/zhe_ipex/lib /home/wangzhe/zhe/intel-extension-for-pytorch/build/Release/intel_extension_for_pytorch/csrc/_C.o -Llib -L/home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages/torch/lib -L/home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages/torch/lib -Lbuild/Release/packages/intel_extension_for_pytorch/lib -lintel-ext-pt-python -lc10 -ltorch -ltorch_cpu -ltorch_python -o build/Release/packages/intel_extension_for_pytorch/_C.cpython-39-x86_64-linux-gnu.so -Wl,-rpath,$ORIGIN/lib
+building 'intel_extension_for_pytorch._isa_help' extension
+Emitting ninja build file /home/wangzhe/zhe/intel-extension-for-pytorch/build/Release/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+g++ -pthread -B /home/wangzhe/.local/envs/zhe_ipex/compiler_compat -shared -Wl,-rpath,/home/wangzhe/.local/envs/zhe_ipex/lib -Wl,-rpath-link,/home/wangzhe/.local/envs/zhe_ipex/lib -L/home/wangzhe/.local/envs/zhe_ipex/lib -L/home/wangzhe/.local/envs/zhe_ipex/lib -Wl,-rpath,/home/wangzhe/.local/envs/zhe_ipex/lib -Wl,-rpath-link,/home/wangzhe/.local/envs/zhe_ipex/lib -L/home/wangzhe/.local/envs/zhe_ipex/lib /home/wangzhe/zhe/intel-extension-for-pytorch/build/Release/csrc/cpu/isa/cpu_feature.o /home/wangzhe/zhe/intel-extension-for-pytorch/build/Release/intel_extension_for_pytorch/csrc/_isa_help_main.o /home/wangzhe/zhe/intel-extension-for-pytorch/build/Release/intel_extension_for_pytorch/csrc/cpu/isa_help/isa_help.o -Llib -L/home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages/torch/lib -L/home/wangzhe/.local/envs/zhe_ipex/lib/python3.9/site-packages/torch/lib -Lbuild/Release/packages/intel_extension_for_pytorch/lib -lc10 -ltorch -ltorch_cpu -ltorch_python -o build/Release/packages/intel_extension_for_pytorch/_isa_help.cpython-39-x86_64-linux-gnu.so -Wl,-rpath,$ORIGIN/lib
+installing to build/bdist.linux-x86_64/wheel
+running install
+running install_lib
+creating build/bdist.linux-x86_64/wheel
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/autocast
+copying build/Release/packages/intel_extension_for_pytorch/cpu/autocast/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/autocast
+copying build/Release/packages/intel_extension_for_pytorch/cpu/autocast/_autocast_mode.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/autocast
+copying build/Release/packages/intel_extension_for_pytorch/cpu/autocast/_grad_scaler.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/autocast
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/hypertune
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/hypertune/conf
+copying build/Release/packages/intel_extension_for_pytorch/cpu/hypertune/conf/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/hypertune/conf
+copying build/Release/packages/intel_extension_for_pytorch/cpu/hypertune/conf/config.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/hypertune/conf
+copying build/Release/packages/intel_extension_for_pytorch/cpu/hypertune/conf/dotdict.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/hypertune/conf
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/hypertune/example
+copying build/Release/packages/intel_extension_for_pytorch/cpu/hypertune/example/resnet50.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/hypertune/example
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/hypertune/strategy
+copying build/Release/packages/intel_extension_for_pytorch/cpu/hypertune/strategy/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/hypertune/strategy
+copying build/Release/packages/intel_extension_for_pytorch/cpu/hypertune/strategy/grid.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/hypertune/strategy
+copying build/Release/packages/intel_extension_for_pytorch/cpu/hypertune/strategy/random.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/hypertune/strategy
+copying build/Release/packages/intel_extension_for_pytorch/cpu/hypertune/strategy/strategy.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/hypertune/strategy
+copying build/Release/packages/intel_extension_for_pytorch/cpu/hypertune/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/hypertune
+copying build/Release/packages/intel_extension_for_pytorch/cpu/hypertune/__main__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/hypertune
+copying build/Release/packages/intel_extension_for_pytorch/cpu/hypertune/objective.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/hypertune
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/launch
+copying build/Release/packages/intel_extension_for_pytorch/cpu/launch/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/launch
+copying build/Release/packages/intel_extension_for_pytorch/cpu/launch/__main__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/launch
+copying build/Release/packages/intel_extension_for_pytorch/cpu/launch/cpu_info.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/launch
+copying build/Release/packages/intel_extension_for_pytorch/cpu/launch/launcher_base.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/launch
+copying build/Release/packages/intel_extension_for_pytorch/cpu/launch/launcher_distributed.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/launch
+copying build/Release/packages/intel_extension_for_pytorch/cpu/launch/launcher_multi_instances.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/launch
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/runtime
+copying build/Release/packages/intel_extension_for_pytorch/cpu/runtime/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/runtime
+copying build/Release/packages/intel_extension_for_pytorch/cpu/runtime/cpupool.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/runtime
+copying build/Release/packages/intel_extension_for_pytorch/cpu/runtime/multi_stream.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/runtime
+copying build/Release/packages/intel_extension_for_pytorch/cpu/runtime/runtime_utils.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/runtime
+copying build/Release/packages/intel_extension_for_pytorch/cpu/runtime/task.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu/runtime
+copying build/Release/packages/intel_extension_for_pytorch/cpu/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu
+copying build/Release/packages/intel_extension_for_pytorch/cpu/_auto_kernel_selection.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu
+copying build/Release/packages/intel_extension_for_pytorch/cpu/_cpu_isa.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu
+copying build/Release/packages/intel_extension_for_pytorch/cpu/auto_ipex.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/cpu
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/jit
+copying build/Release/packages/intel_extension_for_pytorch/jit/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/jit
+copying build/Release/packages/intel_extension_for_pytorch/jit/_trace.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/jit
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/nn
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/nn/functional
+copying build/Release/packages/intel_extension_for_pytorch/nn/functional/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/nn/functional
+copying build/Release/packages/intel_extension_for_pytorch/nn/functional/_embeddingbag.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/nn/functional
+copying build/Release/packages/intel_extension_for_pytorch/nn/functional/_roi_align.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/nn/functional
+copying build/Release/packages/intel_extension_for_pytorch/nn/functional/_tensor_method.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/nn/functional
+copying build/Release/packages/intel_extension_for_pytorch/nn/functional/interaction.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/nn/functional
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/nn/modules
+copying build/Release/packages/intel_extension_for_pytorch/nn/modules/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/nn/modules
+copying build/Release/packages/intel_extension_for_pytorch/nn/modules/_roi_align.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/nn/modules
+copying build/Release/packages/intel_extension_for_pytorch/nn/modules/frozen_batch_norm.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/nn/modules
+copying build/Release/packages/intel_extension_for_pytorch/nn/modules/linear_fuse_eltwise.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/nn/modules
+copying build/Release/packages/intel_extension_for_pytorch/nn/modules/merged_embeddingbag.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/nn/modules
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/nn/utils
+copying build/Release/packages/intel_extension_for_pytorch/nn/utils/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/nn/utils
+copying build/Release/packages/intel_extension_for_pytorch/nn/utils/_model_convert.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/nn/utils
+copying build/Release/packages/intel_extension_for_pytorch/nn/utils/_weight_cast.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/nn/utils
+copying build/Release/packages/intel_extension_for_pytorch/nn/utils/_weight_prepack.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/nn/utils
+copying build/Release/packages/intel_extension_for_pytorch/nn/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/nn
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/optim
+copying build/Release/packages/intel_extension_for_pytorch/optim/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/optim
+copying build/Release/packages/intel_extension_for_pytorch/optim/_functional.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/optim
+copying build/Release/packages/intel_extension_for_pytorch/optim/_lamb.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/optim
+copying build/Release/packages/intel_extension_for_pytorch/optim/_optimizer_utils.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/optim
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/quantization
+copying build/Release/packages/intel_extension_for_pytorch/quantization/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/quantization
+copying build/Release/packages/intel_extension_for_pytorch/quantization/_autotune.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/quantization
+copying build/Release/packages/intel_extension_for_pytorch/quantization/_module_swap_utils.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/quantization
+copying build/Release/packages/intel_extension_for_pytorch/quantization/_qconfig.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/quantization
+copying build/Release/packages/intel_extension_for_pytorch/quantization/_quantization_state.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/quantization
+copying build/Release/packages/intel_extension_for_pytorch/quantization/_quantization_state_utils.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/quantization
+copying build/Release/packages/intel_extension_for_pytorch/quantization/_quantize.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/quantization
+copying build/Release/packages/intel_extension_for_pytorch/quantization/_quantize_utils.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/quantization
+copying build/Release/packages/intel_extension_for_pytorch/quantization/_recipe.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/quantization
+copying build/Release/packages/intel_extension_for_pytorch/quantization/_utils.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/quantization
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/utils
+copying build/Release/packages/intel_extension_for_pytorch/utils/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/utils
+copying build/Release/packages/intel_extension_for_pytorch/utils/_custom_fx_tracer.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/utils
+copying build/Release/packages/intel_extension_for_pytorch/utils/channels_last_1d.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/utils
+copying build/Release/packages/intel_extension_for_pytorch/utils/linear_bn_folding.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/utils
+copying build/Release/packages/intel_extension_for_pytorch/utils/verbose.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/utils
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/xpu
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/xpu/amp
+copying build/Release/packages/intel_extension_for_pytorch/xpu/amp/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/xpu/amp
+copying build/Release/packages/intel_extension_for_pytorch/xpu/amp/autocast_mode.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/xpu/amp
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/xpu/intrinsic
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/xpu/intrinsic/modules
+copying build/Release/packages/intel_extension_for_pytorch/xpu/intrinsic/modules/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/xpu/intrinsic/modules
+copying build/Release/packages/intel_extension_for_pytorch/xpu/intrinsic/modules/intrinsic.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/xpu/intrinsic/modules
+copying build/Release/packages/intel_extension_for_pytorch/xpu/intrinsic/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/xpu/intrinsic
+copying build/Release/packages/intel_extension_for_pytorch/xpu/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/xpu
+copying build/Release/packages/intel_extension_for_pytorch/xpu/_utils.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/xpu
+copying build/Release/packages/intel_extension_for_pytorch/xpu/cpp_extension.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/xpu
+copying build/Release/packages/intel_extension_for_pytorch/xpu/lazy_init.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/xpu
+copying build/Release/packages/intel_extension_for_pytorch/xpu/memory.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/xpu
+copying build/Release/packages/intel_extension_for_pytorch/xpu/random.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/xpu
+copying build/Release/packages/intel_extension_for_pytorch/xpu/single_card.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/xpu
+copying build/Release/packages/intel_extension_for_pytorch/xpu/streams.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/xpu
+copying build/Release/packages/intel_extension_for_pytorch/xpu/utils.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/xpu
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/tpp
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/tpp/utils
+copying build/Release/packages/intel_extension_for_pytorch/tpp/utils/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/tpp/utils
+copying build/Release/packages/intel_extension_for_pytorch/tpp/utils/blocked_layout.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/tpp/utils
+copying build/Release/packages/intel_extension_for_pytorch/tpp/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/tpp
+copying build/Release/packages/intel_extension_for_pytorch/tpp/fused_bert.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/tpp
+copying build/Release/packages/intel_extension_for_pytorch/tpp/optim.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/tpp
+copying build/Release/packages/intel_extension_for_pytorch/__init__.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch
+copying build/Release/packages/intel_extension_for_pytorch/frontend.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch
+copying build/Release/packages/intel_extension_for_pytorch/_version.py -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/lib
+copying build/Release/packages/intel_extension_for_pytorch/lib/libintel-ext-pt-python.so -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/lib
+copying build/Release/packages/intel_extension_for_pytorch/lib/libintel-ext-pt-cpu.so -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/lib
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/share
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/share/cmake
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/share/cmake/IPEX
+copying build/Release/packages/intel_extension_for_pytorch/share/cmake/IPEX/IPEXConfig.cmake -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/share/cmake/IPEX
+copying build/Release/packages/intel_extension_for_pytorch/share/cmake/IPEX/IPEXVersionConfig.cmake -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/share/cmake/IPEX
+copying build/Release/packages/intel_extension_for_pytorch/LICENSE -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/bin
+copying build/Release/packages/intel_extension_for_pytorch/bin/ipex_cpp_test -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch/bin
+copying build/Release/packages/intel_extension_for_pytorch/_C.cpython-39-x86_64-linux-gnu.so -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch
+copying build/Release/packages/intel_extension_for_pytorch/_isa_help.cpython-39-x86_64-linux-gnu.so -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch.egg-info
+copying build/Release/packages/intel_extension_for_pytorch.egg-info/PKG-INFO -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch.egg-info
+copying build/Release/packages/intel_extension_for_pytorch.egg-info/not-zip-safe -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch.egg-info
+copying build/Release/packages/intel_extension_for_pytorch.egg-info/dependency_links.txt -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch.egg-info
+copying build/Release/packages/intel_extension_for_pytorch.egg-info/entry_points.txt -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch.egg-info
+copying build/Release/packages/intel_extension_for_pytorch.egg-info/requires.txt -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch.egg-info
+copying build/Release/packages/intel_extension_for_pytorch.egg-info/top_level.txt -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch.egg-info
+copying build/Release/packages/intel_extension_for_pytorch.egg-info/SOURCES.txt -> build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch.egg-info
+running install_egg_info
+running egg_info
+writing build/Release/packages/intel_extension_for_pytorch.egg-info/PKG-INFO
+writing dependency_links to build/Release/packages/intel_extension_for_pytorch.egg-info/dependency_links.txt
+writing entry points to build/Release/packages/intel_extension_for_pytorch.egg-info/entry_points.txt
+writing requirements to build/Release/packages/intel_extension_for_pytorch.egg-info/requires.txt
+writing top-level names to build/Release/packages/intel_extension_for_pytorch.egg-info/top_level.txt
+/home/wangzhe/.local/lib/python3.9/site-packages/setuptools/command/sdist.py:119: SetuptoolsDeprecationWarning: `build_py` command does not inherit from setuptools' `build_py`.
+!!
+
+        ********************************************************************************
+        Custom 'build_py' does not implement 'get_data_files_without_manifest'.
+        Please extend command classes from setuptools instead of distutils.
+
+        See https://peps.python.org/pep-0632/ for details.
+        ********************************************************************************
+
+!!
+  self._add_data_files(self._safe_data_files(build_py))
+reading manifest file 'build/Release/packages/intel_extension_for_pytorch.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file 'build/Release/packages/intel_extension_for_pytorch.egg-info/SOURCES.txt'
+Copying build/Release/packages/intel_extension_for_pytorch.egg-info to build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch-2.0.100+git25b7212-py3.9.egg-info
+creating build/bdist.linux-x86_64/wheel/intel_extension_for_pytorch-2.0.100+git25b7212.dist-info/WHEEL
+creating 'dist/intel_extension_for_pytorch-2.0.100+git25b7212-cp39-cp39-linux_x86_64.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+adding 'intel_extension_for_pytorch/LICENSE'
+adding 'intel_extension_for_pytorch/_C.cpython-39-x86_64-linux-gnu.so'
+adding 'intel_extension_for_pytorch/__init__.py'
+adding 'intel_extension_for_pytorch/_isa_help.cpython-39-x86_64-linux-gnu.so'
+adding 'intel_extension_for_pytorch/_version.py'
+adding 'intel_extension_for_pytorch/frontend.py'
+adding 'intel_extension_for_pytorch/bin/ipex_cpp_test'
+adding 'intel_extension_for_pytorch/cpu/__init__.py'
+adding 'intel_extension_for_pytorch/cpu/_auto_kernel_selection.py'
+adding 'intel_extension_for_pytorch/cpu/_cpu_isa.py'
+adding 'intel_extension_for_pytorch/cpu/auto_ipex.py'
+adding 'intel_extension_for_pytorch/cpu/autocast/__init__.py'
+adding 'intel_extension_for_pytorch/cpu/autocast/_autocast_mode.py'
+adding 'intel_extension_for_pytorch/cpu/autocast/_grad_scaler.py'
+adding 'intel_extension_for_pytorch/cpu/hypertune/__init__.py'
+adding 'intel_extension_for_pytorch/cpu/hypertune/__main__.py'
+adding 'intel_extension_for_pytorch/cpu/hypertune/objective.py'
+adding 'intel_extension_for_pytorch/cpu/hypertune/conf/__init__.py'
+adding 'intel_extension_for_pytorch/cpu/hypertune/conf/config.py'
+adding 'intel_extension_for_pytorch/cpu/hypertune/conf/dotdict.py'
+adding 'intel_extension_for_pytorch/cpu/hypertune/example/resnet50.py'
+adding 'intel_extension_for_pytorch/cpu/hypertune/strategy/__init__.py'
+adding 'intel_extension_for_pytorch/cpu/hypertune/strategy/grid.py'
+adding 'intel_extension_for_pytorch/cpu/hypertune/strategy/random.py'
+adding 'intel_extension_for_pytorch/cpu/hypertune/strategy/strategy.py'
+adding 'intel_extension_for_pytorch/cpu/launch/__init__.py'
+adding 'intel_extension_for_pytorch/cpu/launch/__main__.py'
+adding 'intel_extension_for_pytorch/cpu/launch/cpu_info.py'
+adding 'intel_extension_for_pytorch/cpu/launch/launcher_base.py'
+adding 'intel_extension_for_pytorch/cpu/launch/launcher_distributed.py'
+adding 'intel_extension_for_pytorch/cpu/launch/launcher_multi_instances.py'
+adding 'intel_extension_for_pytorch/cpu/runtime/__init__.py'
+adding 'intel_extension_for_pytorch/cpu/runtime/cpupool.py'
+adding 'intel_extension_for_pytorch/cpu/runtime/multi_stream.py'
+adding 'intel_extension_for_pytorch/cpu/runtime/runtime_utils.py'
+adding 'intel_extension_for_pytorch/cpu/runtime/task.py'
+adding 'intel_extension_for_pytorch/jit/__init__.py'
+adding 'intel_extension_for_pytorch/jit/_trace.py'
+adding 'intel_extension_for_pytorch/lib/libintel-ext-pt-cpu.so'
+adding 'intel_extension_for_pytorch/lib/libintel-ext-pt-python.so'
+adding 'intel_extension_for_pytorch/nn/__init__.py'
+adding 'intel_extension_for_pytorch/nn/functional/__init__.py'
+adding 'intel_extension_for_pytorch/nn/functional/_embeddingbag.py'
+adding 'intel_extension_for_pytorch/nn/functional/_roi_align.py'
+adding 'intel_extension_for_pytorch/nn/functional/_tensor_method.py'
+adding 'intel_extension_for_pytorch/nn/functional/interaction.py'
+adding 'intel_extension_for_pytorch/nn/modules/__init__.py'
+adding 'intel_extension_for_pytorch/nn/modules/_roi_align.py'
+adding 'intel_extension_for_pytorch/nn/modules/frozen_batch_norm.py'
+adding 'intel_extension_for_pytorch/nn/modules/linear_fuse_eltwise.py'
+adding 'intel_extension_for_pytorch/nn/modules/merged_embeddingbag.py'
+adding 'intel_extension_for_pytorch/nn/utils/__init__.py'
+adding 'intel_extension_for_pytorch/nn/utils/_model_convert.py'
+adding 'intel_extension_for_pytorch/nn/utils/_weight_cast.py'
+adding 'intel_extension_for_pytorch/nn/utils/_weight_prepack.py'
+adding 'intel_extension_for_pytorch/optim/__init__.py'
+adding 'intel_extension_for_pytorch/optim/_functional.py'
+adding 'intel_extension_for_pytorch/optim/_lamb.py'
+adding 'intel_extension_for_pytorch/optim/_optimizer_utils.py'
+adding 'intel_extension_for_pytorch/quantization/__init__.py'
+adding 'intel_extension_for_pytorch/quantization/_autotune.py'
+adding 'intel_extension_for_pytorch/quantization/_module_swap_utils.py'
+adding 'intel_extension_for_pytorch/quantization/_qconfig.py'
+adding 'intel_extension_for_pytorch/quantization/_quantization_state.py'
+adding 'intel_extension_for_pytorch/quantization/_quantization_state_utils.py'
+adding 'intel_extension_for_pytorch/quantization/_quantize.py'
+adding 'intel_extension_for_pytorch/quantization/_quantize_utils.py'
+adding 'intel_extension_for_pytorch/quantization/_recipe.py'
+adding 'intel_extension_for_pytorch/quantization/_utils.py'
+adding 'intel_extension_for_pytorch/share/cmake/IPEX/IPEXConfig.cmake'
+adding 'intel_extension_for_pytorch/share/cmake/IPEX/IPEXVersionConfig.cmake'
+adding 'intel_extension_for_pytorch/tpp/__init__.py'
+adding 'intel_extension_for_pytorch/tpp/fused_bert.py'
+adding 'intel_extension_for_pytorch/tpp/optim.py'
+adding 'intel_extension_for_pytorch/tpp/utils/__init__.py'
+adding 'intel_extension_for_pytorch/tpp/utils/blocked_layout.py'
+adding 'intel_extension_for_pytorch/utils/__init__.py'
+adding 'intel_extension_for_pytorch/utils/_custom_fx_tracer.py'
+adding 'intel_extension_for_pytorch/utils/channels_last_1d.py'
+adding 'intel_extension_for_pytorch/utils/linear_bn_folding.py'
+adding 'intel_extension_for_pytorch/utils/verbose.py'
+adding 'intel_extension_for_pytorch/xpu/__init__.py'
+adding 'intel_extension_for_pytorch/xpu/_utils.py'
+adding 'intel_extension_for_pytorch/xpu/cpp_extension.py'
+adding 'intel_extension_for_pytorch/xpu/lazy_init.py'
+adding 'intel_extension_for_pytorch/xpu/memory.py'
+adding 'intel_extension_for_pytorch/xpu/random.py'
+adding 'intel_extension_for_pytorch/xpu/single_card.py'
+adding 'intel_extension_for_pytorch/xpu/streams.py'
+adding 'intel_extension_for_pytorch/xpu/utils.py'
+adding 'intel_extension_for_pytorch/xpu/amp/__init__.py'
+adding 'intel_extension_for_pytorch/xpu/amp/autocast_mode.py'
+adding 'intel_extension_for_pytorch/xpu/intrinsic/__init__.py'
+adding 'intel_extension_for_pytorch/xpu/intrinsic/modules/__init__.py'
+adding 'intel_extension_for_pytorch/xpu/intrinsic/modules/intrinsic.py'
+adding 'intel_extension_for_pytorch.egg-info/PKG-INFO'
+adding 'intel_extension_for_pytorch.egg-info/SOURCES.txt'
+adding 'intel_extension_for_pytorch.egg-info/dependency_links.txt'
+adding 'intel_extension_for_pytorch.egg-info/entry_points.txt'
+adding 'intel_extension_for_pytorch.egg-info/not-zip-safe'
+adding 'intel_extension_for_pytorch.egg-info/requires.txt'
+adding 'intel_extension_for_pytorch.egg-info/top_level.txt'
+adding 'intel_extension_for_pytorch-2.0.100+git25b7212.dist-info/LICENSE'
+adding 'intel_extension_for_pytorch-2.0.100+git25b7212.dist-info/METADATA'
+adding 'intel_extension_for_pytorch-2.0.100+git25b7212.dist-info/WHEEL'
+adding 'intel_extension_for_pytorch-2.0.100+git25b7212.dist-info/entry_points.txt'
+adding 'intel_extension_for_pytorch-2.0.100+git25b7212.dist-info/top_level.txt'
+adding 'intel_extension_for_pytorch-2.0.100+git25b7212.dist-info/RECORD'
+removing build/bdist.linux-x86_64/wheel

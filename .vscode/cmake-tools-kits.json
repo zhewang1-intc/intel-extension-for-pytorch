@@ -1,0 +1,11 @@
+[
+  {
+    "name": "ipex",
+    "environmentSetupScript": "/home/wangzhe/zhe/intel-extension-for-pytorch/env_init.sh",
+    "compilers": {
+      "C": "/home/wangzhe/.local/envs/zhe_ipex/bin/gcc",
+      "CXX": "/home/wangzhe/.local/envs/zhe_ipex/bin/g++"
+    },
+    "isTrusted": true
+  }
+]
