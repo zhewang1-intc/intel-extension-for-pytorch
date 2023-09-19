@@ -28,6 +28,7 @@ static inline void cumsum_lastdim_kernel(
     const at::Tensor& self,
     int64_t dim) {
   const auto input_ndim = self.dim();
+  std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << std::endl;
   TORCH_CHECK(
       dim == input_ndim - 1,
       "cumsum_lastdim_kernel: expect dim to be ",
