@@ -146,13 +146,14 @@ def _check_env_flag(name, default=""):
 
 
 def get_build_type():
-    return (
-        "RelWithDebInfo"
-        if _check_env_flag("REL_WITH_DEB_INFO")
-        else "Debug"
-        if _check_env_flag("DEBUG")
-        else "Release"
-    )
+    return "Debug"
+    # return (
+    #     "RelWithDebInfo"
+    #     if _check_env_flag("REL_WITH_DEB_INFO")
+    #     else "Debug"
+    #     if _check_env_flag("DEBUG")
+    #     else "Release"
+    # )
 
 
 def create_if_not_exist(path_dir):

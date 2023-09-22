@@ -94,11 +94,11 @@ intel_extension_for_pytorch/_version.py
 csrc/utils/version.h
 
 cscope.*
-     	
+
 # Roo	t level file used in CI to specify certain env configs.
 # E.g	., see .circleci/config.yaml
-env  	
-.circ	leci/scripts/COMMIT_MSG
+env
+.circ leci/scripts/COMMIT_MSG
 
 # IPython notebook checkpoints
 .ipynb_checkpoints
@@ -188,6 +188,7 @@ docs/source/scripts/activation_images/
 
 # build, distribute, and bins (+ python proto bindings)
 build
+build2
 build_host_protoc
 build_android
 build_ios
@@ -206,7 +207,6 @@ aten/build/*
 
 .clang-format-bin/
 .clang-tidy-bin/
-
 
 # Bram
 plsdontbreak
@@ -248,8 +248,9 @@ TAGS
 # Below files are not deleted by "setup.py clean".
 
 # Visual Studio Code files
-.vscode
+# .vscode
 .vs
+.cache
 
 # YouCompleteMe config file
 .ycm_extra_conf.py
