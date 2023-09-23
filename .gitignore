@@ -206,7 +206,7 @@ aten/build/*
 
 .clang-format-bin/
 .clang-tidy-bin/
-
+.cache
 
 # Bram
 plsdontbreak
@@ -248,7 +248,7 @@ TAGS
 # Below files are not deleted by "setup.py clean".
 
 # Visual Studio Code files
-.vscode
+# .vscode
 .vs
 
 # YouCompleteMe config file

@@ -1,0 +1,39 @@
+{
+    "cmake.environment": {"PATH":"/home/wangzhe/anaconda3/envs/llm/bin:/home/wangzhe/anaconda3/condabin:/home/wangzhe/anaconda3/bin:/home/wangzhe/.vscode-server/bin/6509174151d557a81c9d0b5f8a5a1e9274db5585/bin/remote-cli:/home/wangzhe/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"},
+    "cmake.configureArgs": [
+        "-DBUILD_MODULE_TYPE=CPU",
+        "-DBUILD_WITH_XPU=OFF",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_INSTALL_LIBDIR=lib",
+        "-DCMAKE_INSTALL_PREFIX=/home/wangzhe/intel-extension-for-pytorch/build/Debug/packages/intel_extension_for_pytorch",
+        "-DCMAKE_PREFIX_PATH=/home/wangzhe/anaconda3/envs/llm/lib/python3.9/site-packages/torch/share/cmake",
+        "-DCMAKE_PROJECT_VERSION=2.2.0",
+        "-DIPEX_PROJ_NAME=intel_extension_for_pytorch",
+        "-DLIBIPEX_GITREV=7e8eefb1",
+        "-DLIBIPEX_VERSION=2.2.0+git7e8eefb",
+        "-DPYTHON_EXECUTABLE=/home/wangzhe/anaconda3/envs/llm/bin/python",
+        "-DPYTHON_INCLUDE_DIR=/home/wangzhe/anaconda3/envs/llm/include/python3.9",
+        "-DPYTHON_PLATFORM_INFO=Linux-5.15.0-57-generic-x86_64-with-glibc2.35"
+    ],
+    "cmake.buildDirectory": "${workspaceFolder}/build",
+    "clangd.arguments": [
+        "--log=verbose",
+        "--header-insertion=iwyu",
+        "--query-driver=/home/wangzhe/anaconda3/envs/llm/bin/g++*",
+        // 在后台自动分析文件（基于complie_commands)
+        "--background-index",
+        // 同时开启的任务数量
+        "-j=12",
+        // clang-tidy功能
+        "--clang-tidy",
+        "--clang-tidy-checks=performance-*,bugprone-*",
+        // 全局补全（会自动补充头文件）
+        "--all-scopes-completion",
+        // 更详细的补全内容
+        "--completion-style=detailed",
+        // 补充头文件的形式
+        "--header-insertion=iwyu",
+        // pch优化的位置
+        "--pch-storage=disk",
+    ],
+}
