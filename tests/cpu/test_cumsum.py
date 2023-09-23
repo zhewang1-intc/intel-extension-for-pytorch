@@ -6,10 +6,10 @@ from common_utils import TestCase
 class TestCumSum(TestCase):
     # Port from test_torch
     def test_cumsum(self):
-        activation = torch.rand(512, 512, dtype=torch.float)
-        weight = torch.rand(512, 512, dtype=torch.float)
-        output = torch.rand(512, 512, dtype=torch.float)
-        output = torch.ops.torch_ipex.cumsum(activation,weight,output,512,512,512)
+        activation = torch.rand(2, 101, dtype=torch.float)
+        weight = torch.rand(101, 48, dtype=torch.float)
+        output = torch.rand(2, 48, dtype=torch.float)
+        output = torch.ops.torch_ipex.cumsum(activation,weight,output,2,48,101)
         print(output)
         ref = torch.matmul(activation,weight)
         print(ref)

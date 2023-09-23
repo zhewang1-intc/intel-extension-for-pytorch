@@ -9,6 +9,7 @@
 #include <aten/Cumsum.h>
 
 #include <immintrin.h>
+#include "jit_blas_gemm.h"
 #include "vec/vec.h"
 
 namespace torch_ipex {
@@ -30,14 +31,11 @@ static inline void cumsum_lastdim_kernel(
     int64_t m,
     int64_t n,
     int64_t k) {
-  std::cout << "enter calc" << std::endl;
+  jblas::gemm::GemmCore_Row_NN_2x48_AVX2 gemm;
   auto a = activation.data_ptr<float>();
   auto b = weight.data_ptr<float>();
   auto c = output.data_ptr<float>();
-  for (int i = 0; i < m; i++)
-    for (int j = 0; j < n; j++)
-      for (int kk = 0; kk < k; kk++)
-        *(c + i * n + j) += *(a + i * k + kk) * *(b + kk * n + j);
+  gemm.forward(a, b, c, m, n, k, 4 * k, 4 * n, 4 * n, 0);
 }
 
 bool cumsum_fast_path(

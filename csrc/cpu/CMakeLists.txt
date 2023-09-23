@@ -68,6 +68,7 @@ add_subdirectory(${IPEX_CPU_ROOT_DIR}/toolkit)
 add_subdirectory(${IPEX_CPU_ROOT_DIR}/runtime)
 add_subdirectory(${IPEX_CPU_ROOT_DIR}/utils)
 add_subdirectory(${IPEX_CPU_ROOT_DIR}/tpp)
+add_subdirectory(${IPEX_CPU_ROOT_DIR}/jblas)
 
 add_subdirectory(${IPEX_CPU_ROOT_DIR}/jit)
 
@@ -92,6 +93,7 @@ target_include_directories(${PLUGIN_NAME_CPU} PUBLIC ${IPEX_CPU_ROOT_DIR})
 target_include_directories(${PLUGIN_NAME_CPU} PUBLIC ${IPEX_CPU_ROOT_DIR}/aten)
 target_include_directories(${PLUGIN_NAME_CPU} PUBLIC ${IPEX_CPU_ROOT_DIR}/utils)
 target_include_directories(${PLUGIN_NAME_CPU} PUBLIC ${IPEX_CPU_ROOT_DIR}/tpp)
+target_include_directories(${PLUGIN_NAME_CPU} PUBLIC ${IPEX_CPU_ROOT_DIR}/jblas/jblas)
 target_include_directories(${PLUGIN_NAME_CPU} PUBLIC ${IPEX_CPU_ROOT_DIR}/jit)
 
 target_include_directories(${PLUGIN_NAME_CPU} PUBLIC ${IPEX_JIT_CPP_ROOT})
@@ -160,6 +162,7 @@ endif()
 target_include_directories(${PLUGIN_NAME_CPU} PUBLIC ${TORCH_INCLUDE_DIRS})
 target_link_libraries(${PLUGIN_NAME_CPU} PUBLIC ${TORCH_INSTALL_PREFIX}/lib/libtorch_cpu.so)
 target_link_libraries(${PLUGIN_NAME_CPU} PUBLIC ${TORCH_INSTALL_PREFIX}/lib/libc10.so)
+target_link_libraries(${PLUGIN_NAME_CPU} PUBLIC jblas::jblas)
 
 set(ATEN_THREADING "OMP" CACHE STRING "ATen parallel backend")
 message(STATUS "Using ATen parallel backend: ${ATEN_THREADING}")
