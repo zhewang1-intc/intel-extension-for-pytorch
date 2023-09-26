@@ -249,15 +249,19 @@ using woq_tpp_gemm_packB_fn =
 using woq_tpp_gemm_unpackB_fn =
     at::Tensor (*)(const at::Tensor&, bool, int64_t);
 
-using jblas_prepack_perchannel_int4_weight_fn = at::Tensor (*)(const at::Tensor&);
-
+using jblas_prepack_perchannel_int4_weight_fn =
+    at::Tensor (*)(const at::Tensor&);
+using jblas_woq_int4_perchannel_linear_fn =
+    at::Tensor& (*)(const at::Tensor&, const at::Tensor&, at::Tensor&);
 DECLARE_DISPATCH(woq_tpp_gemm_kernel_fn, woq_tpp_gemm_kernel_stub);
 DECLARE_DISPATCH(woq_tpp_gemm_packB_fn, woq_tpp_gemm_packB_stub);
 DECLARE_DISPATCH(woq_tpp_gemm_unpackB_fn, woq_tpp_gemm_unpackB_stub);
 DECLARE_DISPATCH(
     jblas_prepack_perchannel_int4_weight_fn,
     jblas_prepack_perchannel_int4_weight_stub);
-
+DECLARE_DISPATCH(
+    jblas_woq_int4_perchannel_linear_fn,
+    jblas_woq_int4_perchannel_linear_stub);
 #ifdef __GNUC__
 #include <features.h>
 #if __GNUC_PREREQ(12, 3)

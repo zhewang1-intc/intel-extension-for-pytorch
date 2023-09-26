@@ -4,6 +4,7 @@
 #include <aten/utils/woq.h>
 #include <emmintrin.h>
 #include <libxsmm.h>
+#include <cstddef>
 #include <cstdio>
 #include <cstdlib>
 #include <functional>
@@ -17,6 +18,7 @@
 #include "jblas/jit_blas_weight_compression.h"
 #include "jit_blas.h"
 #include "jit_blas_gemm.h"
+#include "jit_blas_prologue.h"
 #include "mkl.h"
 #include "torch/types.h"
 // #include "vec/vec.h"
@@ -2995,17 +2997,12 @@ at::Tensor woq_linear_unpackB_impl(const at::Tensor& weight) {
 #endif
 }
 
-at::Tensor& jblas_woq_int4_perchannel_linear_impl(
-    const at::Tensor& activation,
-    const at::Tensor& weight,
-    at::Tensor& output) {}
-
 at::Tensor jblas_prepack_perchannel_int4_weight_impl(const at::Tensor& weight) {
   using namespace jblas::prologue::weight_comp::gemm_kblcok;
   using PrologueB = WeightS4ClipScaleFp32PerN<
       jblas::gemm::GemmCore_Row_NN_16x48_AMX_S8S8,
       JblasAMX_INT8>;
-  PrologueB prepack_kernel;
+  static PrologueB prepack_kernel;
   int k = weight.sizes()[0];
   int n = weight.sizes()[1];
   assert(
@@ -3019,6 +3016,39 @@ at::Tensor jblas_prepack_perchannel_int4_weight_impl(const at::Tensor& weight) {
   auto output =
       torch::zeros(compress_wei_ptr->getSerializedSize(), torch::kInt8);
   compress_wei_ptr->serializeToBuffer(output.data_ptr());
+  return output;
+}
+
+at::Tensor& jblas_woq_int4_perchannel_linear_impl(
+    const at::Tensor& activation,
+    const at::Tensor& weight,
+    at::Tensor& output) {
+  using Kernel = jblas::wrapper::gemm_pack_weight::GemmInterfaceParallelAB<
+      jblas::wrapper::gemm_pack_weight::GemmLauncherPackWeight<
+          JblasAMX_INT8,
+          jblas::gemm::GemmCore_Row_NN_16x48_AMX_S8S8,
+          jblas::prologue::gemm::ActivationFp32SymS8Quantize,
+          jblas::prologue::weight_comp::gemm_kblcok::WeightS4ClipScaleFp32PerN,
+          jblas::epilogue::gemm::DequantInt32ToFp32>,
+      jblas::utils::parallel::Parallel2DGemm>;
+  static Kernel gemm_kernel;
+  using PrologueA = typename Kernel::ActivationType;
+  using ParamA = typename PrologueA::Param;
+  int m = output.sizes()[0], n = output.sizes()[1], k = activation.sizes()[1];
+  auto quantA = gemm_kernel.getActivationPtr()->createStorage(m, k, nullptr);
+  ParamA param_a = {
+      reinterpret_cast<PrologueA::SRCType*>(activation.data_ptr()), k, quantA};
+  using ParamC = typename Kernel::Epilogue::Param;
+  ParamC param_c = {
+      reinterpret_cast<float*>(output.data_ptr()),
+      n,
+      param_a.Q->mSPtr,
+      param_a.Q->lds};
+  auto deseries_wei = jblas::prologue::weight_comp::gemm_kblcok::
+      PackedWeightParser::deserialBuffer(weight.data_ptr(), false);
+  gemm_kernel.template compute<true, false>(
+      {m, n, k, param_a, deseries_wei, param_c});
+
   return output;
 }
 

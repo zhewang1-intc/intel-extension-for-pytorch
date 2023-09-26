@@ -745,9 +745,18 @@ at::Tensor woq_linear_add_add_forward(
 }
 
 DEFINE_DISPATCH(jblas_prepack_perchannel_int4_weight_stub);
+DEFINE_DISPATCH(jblas_woq_int4_perchannel_linear_stub);
 
 at::Tensor jblas_prepack_perchannel_int4_weight(const at::Tensor& weight) {
   return jblas_prepack_perchannel_int4_weight_stub(kCPU, weight);
+}
+
+at::Tensor& jblas_woq_int4_perchannel_linear(
+    const at::Tensor& activation,
+    const at::Tensor& weight,
+    at::Tensor& output) {
+  return jblas_woq_int4_perchannel_linear_stub(
+      kCPU, activation, weight, output);
 }
 
 } // namespace cpu
@@ -951,6 +960,12 @@ TORCH_LIBRARY_FRAGMENT(torch_ipex, m) {
       "jblas_prepack_perchannel_int4_weight",
       c10::DispatchKey::CPU,
       torch_ipex::cpu::jblas_prepack_perchannel_int4_weight);
+  m.def(
+      "jblas_woq_int4_perchannel_linear(Tensor activation, Tensor weight, Tensor(a!) output) -> Tensor(a!)");
+  m.impl(
+      "jblas_woq_int4_perchannel_linear",
+      c10::DispatchKey::CPU,
+      torch_ipex::cpu::jblas_woq_int4_perchannel_linear);
 }
 
 } // namespace
