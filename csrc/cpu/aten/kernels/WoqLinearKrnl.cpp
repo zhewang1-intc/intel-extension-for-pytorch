@@ -12,8 +12,13 @@
 #include <type_traits>
 #include <unordered_map>
 #include <vector>
+#include "ATen/core/TensorBody.h"
 #include "assert.h"
+#include "jblas/jit_blas_weight_compression.h"
+#include "jit_blas.h"
+#include "jit_blas_gemm.h"
 #include "mkl.h"
+#include "torch/types.h"
 // #include "vec/vec.h"
 
 namespace torch_ipex {
@@ -2989,11 +2994,45 @@ at::Tensor woq_linear_unpackB_impl(const at::Tensor& weight) {
   return weight;
 #endif
 }
+
+at::Tensor& jblas_woq_int4_perchannel_linear_impl(
+    const at::Tensor& activation,
+    const at::Tensor& weight,
+    at::Tensor& output) {}
+
+at::Tensor jblas_prepack_perchannel_int4_weight_impl(const at::Tensor& weight) {
+  using namespace jblas::prologue::weight_comp::gemm_kblcok;
+  using PrologueB = WeightS4ClipScaleFp32PerN<
+      jblas::gemm::GemmCore_Row_NN_16x48_AMX_S8S8,
+      JblasAMX_INT8>;
+  PrologueB prepack_kernel;
+  int k = weight.sizes()[0];
+  int n = weight.sizes()[1];
+  assert(
+      n % jblas::gemm::GemmCore_Row_NN_16x48_AMX_S8S8::NTILE == 0 &&
+      k % jblas::gemm::GemmCore_Row_NN_16x48_AMX_S8S8::KTILE == 0);
+  auto compress_wei_ptr =
+      (typename PrologueB::StorageWeight*)prepack_kernel.createStorage(
+          n, k, -1);
+  prepack_kernel.packWeight(
+      n, k, reinterpret_cast<float*>(weight.data_ptr()), n, compress_wei_ptr);
+  auto output =
+      torch::zeros(compress_wei_ptr->getSerializedSize(), torch::kInt8);
+  compress_wei_ptr->serializeToBuffer(output.data_ptr());
+  return output;
+}
+
 } // namespace
 
 REGISTER_DISPATCH(woq_gemm_kernel_stub, &woq_gemm_kernel_impl);
 REGISTER_DISPATCH(woq_gemm_eltwise_kernel_stub, &woq_gemm_eltwise_kernel_impl);
 REGISTER_DISPATCH(woq_linear_unpackB_stub, &woq_linear_unpackB_impl);
 REGISTER_DISPATCH(woq_linear_packB_stub, &woq_linear_packB_impl);
+REGISTER_DISPATCH(
+    jblas_prepack_perchannel_int4_weight_stub,
+    &jblas_prepack_perchannel_int4_weight_impl);
+REGISTER_DISPATCH(
+    jblas_woq_int4_perchannel_linear_stub,
+    &jblas_woq_int4_perchannel_linear_impl);
 } // namespace cpu
 } // namespace torch_ipex
