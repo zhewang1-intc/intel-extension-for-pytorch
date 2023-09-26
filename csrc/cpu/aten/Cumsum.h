@@ -1,30 +1,25 @@
 #include <ATen/Tensor.h>
-#include <ATen/core/TensorBody.h>
 #include <dyndisp/DispatchStub.h>
 #include <torch/all.h>
-#include <cstdint>
 
 namespace torch_ipex {
 namespace cpu {
 
 namespace {
 
-// naive gemm, not jblas version
-at::Tensor& cumsum_kernel_impl(
-    at::Tensor& activation,
-    at::Tensor& weight,
-    at::Tensor& output,
-    int64_t m,
-    int64_t n,
-    int64_t k);
-} // namespace
+at::Tensor cumsum_kernel_impl(
+    at::Tensor& result,
+    const at::Tensor& self,
+    int64_t dim,
+    c10::optional<at::ScalarType> dtype);
 
-using cumsum_kernel_fn = at::Tensor& (*)(at::Tensor&,
-                                         at::Tensor&,
-                                         at::Tensor&,
-                                         int64_t,
-                                         int64_t,
-                                         int64_t);
+}
+
+using cumsum_kernel_fn = at::Tensor (*)(
+    at::Tensor&,
+    const at::Tensor&,
+    int64_t,
+    c10::optional<at::ScalarType>);
 DECLARE_DISPATCH(cumsum_kernel_fn, cumsum_kernel_stub);
 
 } // namespace cpu
