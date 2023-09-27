@@ -36,4 +36,8 @@
         // pch优化的位置
         "--pch-storage=disk",
     ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8"
+    },
+    "python.formatting.provider": "none",
 }

@@ -19,6 +19,7 @@
 #include "jit_blas.h"
 #include "jit_blas_gemm.h"
 #include "jit_blas_prologue.h"
+#include "jit_blas_utils.h"
 #include "mkl.h"
 #include "torch/types.h"
 // #include "vec/vec.h"
@@ -2998,6 +2999,7 @@ at::Tensor woq_linear_unpackB_impl(const at::Tensor& weight) {
 }
 
 at::Tensor jblas_prepack_perchannel_int4_weight_impl(const at::Tensor& weight) {
+  jblas::utils::request_perm_xtile_data();
   using namespace jblas::prologue::weight_comp::gemm_kblcok;
   using PrologueB = WeightS4ClipScaleFp32PerN<
       jblas::gemm::GemmCore_Row_NN_16x48_AMX_S8S8,
