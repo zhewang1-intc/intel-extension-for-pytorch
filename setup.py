@@ -706,8 +706,8 @@ class IPEXCPPLibBuild(build_clib, object):
 
         define_build_options(cmake_common_args, **build_option_common)
 
-        # nproc = min(int(os.environ.get("MAX_JOBS", os.cpu_count())), os.cpu_count())
-        nproc = 5
+        nproc = min(int(os.environ.get("MAX_JOBS", os.cpu_count())), os.cpu_count())
+        #nproc = 5
         if sequential_build:
             nproc = 1
             print("WARNING: Practice as sequential build with single process !")

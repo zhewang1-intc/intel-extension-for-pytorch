@@ -3007,9 +3007,6 @@ at::Tensor jblas_prepack_perchannel_int4_weight_impl(const at::Tensor& weight) {
   static PrologueB prepack_kernel;
   int k = weight.sizes()[0];
   int n = weight.sizes()[1];
-  assert(
-      n % jblas::gemm::GemmCore_Row_NN_16x48_AMX_S8S8::NTILE == 0 &&
-      k % jblas::gemm::GemmCore_Row_NN_16x48_AMX_S8S8::KTILE == 0);
   auto compress_wei_ptr =
       (typename PrologueB::StorageWeight*)prepack_kernel.createStorage(
           n, k, -1);
@@ -3037,20 +3034,22 @@ at::Tensor& jblas_woq_int4_perchannel_linear_impl(
   using PrologueA = typename Kernel::ActivationType;
   using ParamA = typename PrologueA::Param;
   int m = output.sizes()[0], n = output.sizes()[1], k = activation.sizes()[1];
-  auto quantA = gemm_kernel.getActivationPtr()->createStorage(m, k, nullptr);
+  auto quantA = gemm_kernel.getActivationPtr()->createStorage(m, k, NULL);
   ParamA param_a = {
       reinterpret_cast<PrologueA::SRCType*>(activation.data_ptr()), k, quantA};
   using ParamC = typename Kernel::Epilogue::Param;
+  auto deseries_wei = jblas::prologue::weight_comp::gemm_kblcok::
+      PackedWeightParser::deserialBuffer(weight.data_ptr(), false);
   ParamC param_c = {
       reinterpret_cast<float*>(output.data_ptr()),
       n,
       param_a.Q->mSPtr,
-      param_a.Q->lds};
-  auto deseries_wei = jblas::prologue::weight_comp::gemm_kblcok::
-      PackedWeightParser::deserialBuffer(weight.data_ptr(), false);
+      param_a.Q->lds,
+      dynamic_cast<typename Kernel::WeightType::StorageWeight*>(deseries_wei)
+          ->mSPtr};
   gemm_kernel.template compute<true, false>(
       {m, n, k, param_a, deseries_wei, param_c});
-
+  delete quantA;
   return output;
 }
 
